@@ -26,23 +26,14 @@ class Library{
 public:
 	//Calls constructors for each container for types of books / media
 
-	Library() {
-	//container for Children Books
-	containers[0] = BinTree();
-	//container for Fiction Books
-	containers[1] = MediaContainer();
-	//container for Periodical Books
-	containers[2] = MediaContainer ();
-		for (int i = 3; i < MAXMEDIA) {
-			container[i] = NULL;
-		}
-	}
-	//Calls destructors for each type of Media Container
+	Library();
+
+	//Calls destructors for each bstree. //I might not need this, I'm not entirely sure if the destructor will be called for each bstree on their own.
 	~Library();
 
 	/*Inserts a new media object in the library, into the correct container
 	for that type of media*/
-	bool insert(const Media* aMedia);
+	bool insert(Media* aMedia, int containerNumber);
 	/*Completely remevoes a media from it's respective container given a 
 	title of the media to be removed*/
 	bool remove(const std::string title);
@@ -51,16 +42,16 @@ public:
 	library, then it will check if there are any copies in the library, 
 	if there are copies then the number of copies in the library is reduced by
 	one, and a copy of the book object with copies set to 1 is returned*/
-	Media* checkOutMedia();
+	Media* checkOutMedia(const Media* aMedia, int containerNumber);
 
 	/*would delete the Media object that is being returnedand increase the
 	number of copies of the book object in the library by 1 */
-	bool checkInMedia(Media* aMedia);
+	bool checkInMedia(Media* aMedia, int containerNumber);
 
 private:
 	/*An array that hold all the containers for each type of media that is 
    stored in the library. There should be 1 container for each type of media*/
-	BinTree containers[MAXMEDIA];
+	BinTree* containers[MAXMEDIA];
 };
 
 #endif

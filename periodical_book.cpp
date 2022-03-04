@@ -24,6 +24,11 @@ bool Periodical::checkOut()
     return false;
 }
 
+bool Periodical::checkIn()
+{
+    return false;
+}
+
 void Periodical::display() const
 {       
     string numCopiesStr = to_string(numCopies);

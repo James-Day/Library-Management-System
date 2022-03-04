@@ -18,6 +18,15 @@ Media* FictionBook::create()
 
 bool FictionBook::checkOut()
 {
+    if (numCopies >= 1) {
+        numCopies--;
+        return true;
+    }
+    return false;
+}
+
+bool FictionBook::checkIn()
+{
     return false;
 }
 

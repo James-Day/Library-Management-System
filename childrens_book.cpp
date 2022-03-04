@@ -18,6 +18,15 @@ Media* ChildrensBook::create()
 
 bool ChildrensBook::checkOut()
 {
+    if (numCopies >= 1) {
+        numCopies--;
+        return true;
+    }
+    return false;
+}
+
+bool ChildrensBook::checkIn()
+{
     return false;
 }
 

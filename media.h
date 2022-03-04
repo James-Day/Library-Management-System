@@ -26,7 +26,8 @@ public:
 	virtual bool operator== (const Media& rhs) const = 0;
 	virtual bool operator!= (const Media& rhs) const = 0;
 
-
+	virtual bool checkOut() = 0;
+	virtual bool checkIn() = 0;
 	
 protected:
 	//might add some data for media objects here

@@ -15,18 +15,15 @@ const int kMaxNumBooksLength = 4;
 
 class Book : public Media {
 public:
-
-	//lowers the number of copies by 1, checkout is in the book class instead of the media class because if media was something 
-	//like music, then maybe we wouldn't need to checkout we'd need to just download the mp3 file
-	virtual bool checkOut() = 0;
-	/*overwritten by all media subclassesand will return a pointer to
-	a new media subclass object that is created*/
 	virtual Media* create() = 0;
+	virtual void display() const = 0;
+	virtual bool operator< (const Media& rhs) const = 0;
+	virtual bool operator> (const Media& rhs) const = 0;
+	virtual bool operator== (const Media& rhs) const = 0;
+	virtual bool operator!= (const Media& rhs) const = 0;
 
-	 //I probablly will keep display pure virtual but maybe I'll wanna make the base classes call the parent display funciton??
-
-
-
+	virtual bool checkOut() = 0;
+	virtual bool checkIn() = 0;
 
 protected:
 	/*Number of copies of this media in the library. When a patron checks out

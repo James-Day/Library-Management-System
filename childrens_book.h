@@ -24,7 +24,7 @@ public:
 	returns it as a pointer */
 	virtual Media* create();
 	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
-
+	virtual bool checkIn();
 
 	/*Overiden display function which prints author, title, year*/
 	virtual void display() const;

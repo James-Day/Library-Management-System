@@ -3,6 +3,8 @@
 #include "childrens_book.h"
 #include "periodical.h"         //I will remove these later
 #include "bintree.h"
+#include "library.h"
+
 using namespace std;
 
 bool test(bool expected, bool real, string testName) {
@@ -332,5 +334,8 @@ int main() {
 
      Periodical* found2_ptr = dynamic_cast<Periodical*>(found2);
      found2_ptr->display();
+
+     cout << endl << endl << "   TESTING LIBRARY" << endl << endl;
+
+     ///////////////////////// LIBRARY TESTING //////////////////////////////////
 }
-// ---------------------------------------------------------------------------
