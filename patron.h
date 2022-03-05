@@ -13,27 +13,27 @@
 #ifndef PATRON_H_
 #define PATRON_H_
 #include "media.h"
+const int kStartingBookLimit = 10;
 
 class Patron
 {
 public:
-    Patron();
-    Patron(std::string name, int id);
-    bool checkOut(Media&);//inserts Media into "allBooks" hashtable
+    Patron(std::string patronName, std::string patronLastName, int id);
+    bool checkOut(Media* checkingOut);//inserts Media into "allBooks" hashtable
    // HashTable& getBooks(); //return the hashtable with all the books
-    Media& getBook(Media&); //return one book
-
-    // return the patron info (depending on programming style:  return bool or 
-    // Patron)
-    bool getPatron(Patron*&) const;
+    Media* returnBook(Media* returnBook); //return one book
 
     void displayBooks() const;
     void displayPatron() const;
+    int getID();
 private:
     /*Uses a hashtable to store a list of all the
       books a patron has checked out currently*/
       // HashTable allBooks;
-    std::string name;
+    Media* all_books[kStartingBookLimit];
+    //Command* commandHistory[x];
+    std::string firstName;
+    std::string lastName;
     int ID;
 };
 

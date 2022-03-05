@@ -1,7 +1,7 @@
 #ifndef FICTION_BOOK_H_
 #define FICTION_BOOK_H_
 #include <iostream>
-#include "Book.h"
+#include "book.h"
 // ---------------------------------------------------------------------------
 // FictionBook: The FictionBook class is a subclass of the Book class.
 //		Fiction books have a title, year, and number of copies from the 

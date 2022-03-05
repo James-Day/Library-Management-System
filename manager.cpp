@@ -44,3 +44,8 @@ void Manager::inputMediaFile(string infile) // This will be moved to a transacti
         // insert a valid edge into the adjacency edge STL list for fromNode
     }*/
 }
+
+void Manager::inputPatreonFile(const string infile)
+{
+    //maybe make a function in patron container that creates, and maybe that create even calls the patron class.
+}

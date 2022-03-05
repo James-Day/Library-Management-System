@@ -5,6 +5,7 @@
 #include "bintree.h"
 #include "library.h"
 #include "factory.h"
+#include "patron.h"
 
 using namespace std;
 
@@ -66,7 +67,7 @@ int main() {
         Periodical Pdisplay;
 
         //book1.display();
-        Fbook3.changevals("", 1996, "FactoryFictionBook", 1);
+        Fbook3.changevals("", 1996, "FactoryFictionBook", 5);
         Fbook4.changevals("", 1996, "difTitle", 1);
         Fbook5.changevals("difAuth", 1996, "FactoryFictionBook", 1);
         Fbook6.changevals("", 2000, "FactoryFictionBook", 1);
@@ -114,7 +115,7 @@ int main() {
         test(true, Fbook1 == Fbook3, "Equivalence 2");
         test(false, Fbook1 == Fbook4, "non Equivalence");
         test(false, Fbook1 == Fbook5, "non Equivalence 2");
-        test(false, Fbook1 == Fbook6, "non Equivalence 3");
+        test(true, Fbook1 == Fbook6, "non Equivalence 3");
         test(false, Fbook2 == Fbook5, "non Equivalence 4");
 
         //TESTING < FICTIONBOOK
@@ -287,13 +288,13 @@ int main() {
 
         cout << tree2;
 
-        
+
         cout << endl << "   TESTING PERIODICALS SORTING" << endl;
 
         //TESTING PERIODICALS SORTING
         Periodical* a3 = new Periodical();
         Periodical* b3 = new Periodical();
-       // Periodical* c3 = new Periodical();
+        // Periodical* c3 = new Periodical();
         Periodical* d3 = new Periodical();
         Periodical* e3 = new Periodical();
         Periodical* f3 = new Periodical();
@@ -304,7 +305,7 @@ int main() {
 
         a3->changevals(1, 2000, "FactoryFictionBook", 1);
         b3->changevals(2, 2000, "FactoryFictionBook", 1);
-       // c3->changevals(2, 2000, "FactoryFictionBook", 1);
+        // c3->changevals(2, 2000, "FactoryFictionBook", 1);
         d3->changevals(2, 1999, "FactoryFictionBook", 1);
         e3->changevals(3, 2000, "title", 1);
         f3->changevals(1, 2001, "factoryFictionBook", 1);
@@ -316,7 +317,7 @@ int main() {
         BinTree tree3;
         tree3.insert(a3);
         tree3.insert(b3);
-       // tree3.insert(c3);
+        // tree3.insert(c3);
         tree3.insert(d3);
         tree3.insert(e3);
         tree3.insert(f3);
@@ -328,7 +329,7 @@ int main() {
         cout << tree3;
 
         cout << endl << "   TESTING BSTREE RETRIEVE" << endl;
-        
+
         //TESTING PERIODICALS SORTING
         Periodical* found = nullptr;
         Media* found2 = (Media*)found;
@@ -336,7 +337,7 @@ int main() {
 
         Periodical* found2_ptr = dynamic_cast<Periodical*>(found2);
         found2_ptr->display();
-        
+
         cout << endl << endl << "   TESTING LIBRARY" << endl << endl;
         ///////////////////////// LIBRARY TESTING //////////////////////////////////
         Library Library1;
@@ -373,7 +374,7 @@ int main() {
 
         La3->changevals(1, 2000, "FactoryFictionBook", 1);
         Lb3->changevals(2, 2000, "FactoryFictionBook", 1);
-     //   Lc3->changevals(2, 2000, "FactoryFictionBook", 1);
+        //   Lc3->changevals(2, 2000, "FactoryFictionBook", 1);
         Ld3->changevals(2, 1999, "FactoryFictionBook", 1);
         Le3->changevals(3, 2000, "title", 1);
         Lf3->changevals(1, 2001, "factoryFictionBook", 1);
@@ -404,7 +405,7 @@ int main() {
 
         Library1.insert(La3, 'P');
         Library1.insert(Lb3, 'P');
-       // Library1.insert(Lc3, 'P');
+        // Library1.insert(Lc3, 'P');
         Library1.insert(Ld3, 'P');
         Library1.insert(Le3, 'P');
         Library1.insert(Lf3, 'P');
@@ -434,24 +435,28 @@ int main() {
         Library1.insert(LFi, 'F');
 
         Library1.display();
-        
+
         cout << endl << endl << "   TESTING FACTORY" << endl << endl;
-        
+
         ///////////////////////// FACTORY TESTING //////////////////////////////////
         Factory factory1;
         factory1.display();
 
         cout << endl << endl << "   TESTING INPUT" << endl << endl;
 
-        
+
         ///////////////////////// INPUT TESTING //////////////////////////////////
         Manager libManager;
         libManager.inputMediaFile("data4books.txt");
-        //libManager.displayLibrary();
-        
-        
-        //memory leak test
-        //kFactory factory1;
+        libManager.displayLibrary();
+
+
+
+        cout << endl << endl << "   TESTING PATRON" << endl << endl;
+
+        ///////////////////////// INPUT PATRON //////////////////////////////////
     }
+    Patron patron1("James", "Day", 9999);
+
     _CrtDumpMemoryLeaks();
 }
