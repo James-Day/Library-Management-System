@@ -31,6 +31,9 @@ public:
 	tree and sets it to nullptr */
 	BinTree();
 
+	//Constructor for Bintree sets name, and sets root to nullptr
+	BinTree(string nameForTree);
+
 	// destructor for deallocating memory when the BinTree falls out of scope
 	~BinTree();
 
@@ -50,6 +53,7 @@ public:
 	//Iostream overload, outputs the tree inorder to the stream.
 	friend ostream& operator<<(ostream& stream, const BinTree& rhs);
 
+	string getName() const;
 private:
 	//Node structure that holds a pointer to data being held as well as
 	// left and right pointers
@@ -61,6 +65,7 @@ private:
 	/* pointer to the root / top of the BinTree.
 	Used to find data within the tree*/
 	Node* root = nullptr;
+	string name;
 
 	// recursive helper for << operator
 	void inorderHelper(const Node* node, ostream& stream) const;

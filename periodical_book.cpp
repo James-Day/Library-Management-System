@@ -10,9 +10,27 @@ Periodical::Periodical()
     month = 0;
 }
 
-Media* Periodical::create()
+Media* Periodical::create(istream& infile)
 {
-    return this;
+    string titleStr = "";
+    int dateMonth = 0;
+    int dateYear = 0;
+
+    Periodical* createdBook = new Periodical();
+
+    getline(infile, titleStr, ',');
+    createdBook->title = titleStr;
+    
+    infile >> dateMonth;
+    createdBook->month = dateMonth;
+    infile >> dateYear;
+    createdBook->year = dateYear;
+
+    return createdBook;
+}
+
+Periodical::~Periodical()
+{
 }
 
 bool Periodical::checkOut()

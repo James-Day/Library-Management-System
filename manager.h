@@ -19,6 +19,7 @@
 #include "factory.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -38,9 +39,9 @@ public:
     // prints the library books sorted in each category
     void displayLibrary() const;
 
-    void inputMediaFile(string& file);       // initializes books of library
-    void inputPatreonFile(string& file);     // initializes patrons
-    void inputTransactions(string& file);    // initializes book transactions
+    void inputMediaFile(const string infile);       // initializes books of library // This will be moved to a transaction class but for now it's fine
+    void inputPatreonFile(const string infile);     // initializes patrons
+    void inputTransactions(const string infile);    // initializes book transactions
 
 private:
     Library library;

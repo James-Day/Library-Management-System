@@ -15,7 +15,7 @@ const int kMaxNumBooksLength = 4;
 
 class Book : public Media {
 public:
-	virtual Media* create() = 0;
+	virtual Media* create(istream& infile) = 0;
 	virtual void display() const = 0;
 	virtual bool operator< (const Media& rhs) const = 0;
 	virtual bool operator> (const Media& rhs) const = 0;

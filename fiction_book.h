@@ -18,13 +18,14 @@
 //For now all fiction books in the library will have five copies
 const int kNumFictionBooks = 5;
 
-
 class FictionBook : public Book {
 public:
 	FictionBook();
 	/*Overiden create function which creates a new FictionBook and
 	returns it as a pointer */
-	virtual Media* create();
+	virtual Media* create(istream& infile);
+	virtual ~FictionBook();
+
 	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
 	virtual bool checkIn();
 

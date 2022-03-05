@@ -11,9 +11,26 @@ FictionBook::FictionBook()
     year = 1996;
 }
 
-Media* FictionBook::create()
+Media* FictionBook::create(istream& infile)
 {
-    return this;
+    string authorStr = "";
+    string titleStr = "";
+    int date = 0;
+
+    FictionBook* createdBook = new FictionBook();
+
+    getline(infile, authorStr, ',');
+    createdBook->author = authorStr;
+    getline(infile, titleStr, ',');
+    createdBook->title = titleStr;
+    infile >> date;
+    createdBook->year = date;
+
+    return createdBook;
+}
+
+FictionBook::~FictionBook()
+{
 }
 
 bool FictionBook::checkOut()

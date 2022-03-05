@@ -1,6 +1,7 @@
 #ifndef CHILDRENS_BOOK_H_
 #define CHILDRENS_BOOK_H_
 #include <iostream>
+#include <fstream>
 #include "Book.h"
 
 // ---------------------------------------------------------------------------
@@ -16,13 +17,14 @@
 
 //For now all children books in the library will have five copies
 const int kNumChildrenBooks = 5;
-
 class ChildrensBook: public Book {
 public:
 	ChildrensBook();
 	/*Overiden create function which creates a new ChildrensBook and 
 	returns it as a pointer */
-	virtual Media* create();
+	virtual Media* create(istream& infile);
+	virtual ~ChildrensBook();
+
 	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
 	virtual bool checkIn();
 

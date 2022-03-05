@@ -20,7 +20,7 @@
 //		are added
 
 //The maximum number of media types the library can have is 10 for now
-const int MAXMEDIA = 10;
+const int MAXMEDIA = 26;			//change the name of this const to have a k and camel case instead of all caps
 
 class Library{
 public:
@@ -33,7 +33,7 @@ public:
 
 	/*Inserts a new media object in the library, into the correct container
 	for that type of media*/
-	bool insert(Media* aMedia, int containerNumber);
+	bool insert(Media* aMedia, char bookType);
 	/*Completely remevoes a media from it's respective container given a 
 	title of the media to be removed*/
 	bool remove(const std::string title);
@@ -42,16 +42,21 @@ public:
 	library, then it will check if there are any copies in the library, 
 	if there are copies then the number of copies in the library is reduced by
 	one, and a copy of the book object with copies set to 1 is returned*/
-	Media* checkOutMedia(const Media* aMedia, int containerNumber);
+	Media* checkOutMedia(const Media* aMedia, char bookType);
 
 	/*would delete the Media object that is being returnedand increase the
 	number of copies of the book object in the library by 1 */
-	bool checkInMedia(Media* aMedia, int containerNumber);
+	bool checkInMedia(Media* aMedia, char bookType);
+
+	void display() const;
 
 private:
 	/*An array that hold all the containers for each type of media that is 
    stored in the library. There should be 1 container for each type of media*/
 	BinTree* containers[MAXMEDIA];
+
+	// returns the index of the array to use for storing the book
+	int hash(const char& ch) const;
 };
 
 #endif

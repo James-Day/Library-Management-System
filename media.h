@@ -13,13 +13,15 @@
 //		the library would like to hold.
 //	 -- When a patron checks out some form of media, they will recieve a copy 
 //		of the media object.
+using namespace std;
 class Media {
 public:
 	/* No constructor for the media class?
 	* 
 	/*overwritten by all media subclassesand will return a pointer to
 	a new media subclass object that is created*/
-	virtual Media* create() =0;
+	virtual Media* create(istream& infile) =0;
+	virtual ~Media() =0;
 	virtual void display() const =0;
 	virtual bool operator< (const Media& rhs) const = 0;
 	virtual bool operator> (const Media& rhs) const = 0;

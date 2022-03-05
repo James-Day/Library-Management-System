@@ -11,9 +11,26 @@ ChildrensBook::ChildrensBook()
     year = 1996;
 }
 
-Media* ChildrensBook::create()
+Media* ChildrensBook::create(std::istream& infile)
 {
-    return this;
+    string authorStr = "";
+    string titleStr = "";
+    int date = 0;
+
+    ChildrensBook* createdBook = new ChildrensBook();
+
+    getline(infile, authorStr, ',');
+    createdBook->author = authorStr;
+    getline(infile, titleStr, ',');
+    createdBook->title = titleStr;
+    infile >> date;
+    createdBook->year = date;
+
+    return createdBook;
+}
+
+ChildrensBook::~ChildrensBook()
+{
 }
 
 bool ChildrensBook::checkOut()

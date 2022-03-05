@@ -7,8 +7,15 @@ of the tree to nullptr*/
 BinTree::BinTree() 
 {
 	root = nullptr;
+	name = "";
 }
-
+// BinTree (constructor)
+//Constructor for Bintree sets name, and sets root to nullptr
+BinTree::BinTree(string nameForTree)
+{
+	root = nullptr;
+	name = nameForTree;
+}
 //--------------------------------------------------------------------------
 // destructor
 /* destructor for BinTree, deletes all memory in the tree including
@@ -51,6 +58,11 @@ false is returned otherwise*/
 bool BinTree::isEmpty() const
 {
 	return (root == nullptr);
+}
+
+string BinTree::getName() const
+{
+	return name;
 }
 
 
