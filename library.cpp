@@ -23,18 +23,17 @@ Library::~Library()
 
 bool Library::insert(Media* aMedia, char bookType)
 {
-	if (containers[hash(bookType)]->insert(aMedia)) {
-		return true;
-	}
-	return false;
+	return containers[hash(bookType)]->insert(aMedia);
+		
 }
 
 Media* Library::checkOutMedia(const Media* aMedia, char bookType) // might have to rework this as I'm not sure how you would have a book before checking it out. //I also might bass by value a book to be updated to the one that is checkedout
 {
 	Media* found = nullptr;
 	if (containers[hash(bookType)]->retrieve(*aMedia, found)) {
-		found->checkOut();
-		return found;
+		//if (found->checkOut()) { //doing this in manager class instead
+			return found;
+		//}
 	}
 	//book was not found
 	return nullptr;

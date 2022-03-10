@@ -1,12 +1,11 @@
 #include "periodical.h"
-#include  <string>
-#include <iomanip>
+
 using namespace std;
 Periodical::Periodical()
 {
     numCopies = kNumPeriodicals;
     title = "FactoryPeriodical";
-    year = 1996;
+    year = 0;
     month = 0;
 }
 
@@ -18,6 +17,7 @@ Media* Periodical::create(istream& infile)
 
     Periodical* createdBook = new Periodical();
 
+    infile.get();                     // get (and ignore) blank before author
     getline(infile, titleStr, ',');
     createdBook->title = titleStr;
     
@@ -25,6 +25,26 @@ Media* Periodical::create(istream& infile)
     createdBook->month = dateMonth;
     infile >> dateYear;
     createdBook->year = dateYear;
+
+    return createdBook;
+}
+
+Media* Periodical::createFromCommand(istream& infile)
+{
+    string titleStr = "";
+    int dateMonth = 0;
+    int dateYear = 0;
+
+    Periodical* createdBook = new Periodical();
+
+    infile >> dateYear;
+    createdBook->year = dateYear;
+
+    infile >> dateMonth;
+    createdBook->month = dateMonth;
+    infile.get();                     // get (and ignore) blank before author
+    getline(infile, titleStr, ',');
+    createdBook->title = titleStr;
 
     return createdBook;
 }
@@ -44,10 +64,11 @@ bool Periodical::checkOut()
 
 bool Periodical::checkIn()
 {
-    return false;
+    numCopies++;
+    return true;
 }
 
-void Periodical::display() const
+void Periodical::displayInLibrary() const
 {       
     string numCopiesStr = to_string(numCopies);
     string yearStr = to_string(year);
@@ -57,6 +78,18 @@ void Periodical::display() const
         << numCopiesStr.substr(0, kMaxNumBooksLength)
         << setw(kMaxTitleLength + 20) << title.substr(0, kMaxTitleLength + 18)  //longer length for title since periodicals don't have authors
         << setw(kMaxYearLength +2)
+        << yearStr.substr(0, kMaxYearLength) << right
+        << setw(kMaxMonthLength) << monthStr.substr(0, kMaxAuthorLength);
+}
+
+void Periodical::displayInPatron() const
+{
+    string yearStr = to_string(year);
+    string monthStr = to_string(month);
+                                            //Will have to change to look like hers
+    cout << left << "  "
+        << setw(kMaxTitleLength + 20) << title.substr(0, kMaxTitleLength + 18)  //longer length for title since periodicals don't have authors
+        << setw(kMaxYearLength + 2)
         << yearStr.substr(0, kMaxYearLength) << right
         << setw(kMaxMonthLength) << monthStr.substr(0, kMaxAuthorLength);
 }

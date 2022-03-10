@@ -8,19 +8,21 @@ FictionBook::FictionBook()
     author = "";
     numCopies = kNumFictionBooks;
     title = "FactoryFictionBook";
-    year = 1996;
+    year = 0;
 }
 
 Media* FictionBook::create(istream& infile)
 {
+    //Take inputs into seperate strings incase we want to do error checking in the future
     string authorStr = "";
     string titleStr = "";
     int date = 0;
 
     FictionBook* createdBook = new FictionBook();
-
+    infile.get();                     // get (and ignore) blank before author
     getline(infile, authorStr, ',');
     createdBook->author = authorStr;
+    infile.get();                     // get (and ignore) blank before author
     getline(infile, titleStr, ',');
     createdBook->title = titleStr;
     infile >> date;
@@ -28,6 +30,27 @@ Media* FictionBook::create(istream& infile)
 
     return createdBook;
 }
+
+
+Media* FictionBook::createFromCommand(istream& infile)
+{
+    //Take inputs into seperate strings incase we want to do error checking in the future
+    string authorStr = "";
+    string titleStr = "";
+    string endOfLine = "";
+
+    FictionBook* createdBook = new FictionBook();
+
+    infile.get();                     // get (and ignore) blank before author
+    getline(infile, authorStr, ',');
+    createdBook->author = authorStr;
+    infile.get();                     // get (and ignore) blank before author
+    getline(infile, titleStr, ',');
+    createdBook->title = titleStr;
+
+    return createdBook;
+}
+
 
 FictionBook::~FictionBook()
 {
@@ -44,10 +67,11 @@ bool FictionBook::checkOut()
 
 bool FictionBook::checkIn()
 {
-    return false;
+    numCopies++;
+    return true;
 }
 
-void FictionBook::display() const
+void FictionBook::displayInLibrary() const
 {
     string numCopiesStr = to_string(numCopies);
     string yearStr = to_string(year);
@@ -57,6 +81,17 @@ void FictionBook::display() const
         setw(kMaxAuthorLength + 2) << author.substr(0, kMaxAuthorLength)
         << setw(kMaxTitleLength + 2) << title.substr(0,kMaxTitleLength)
         << right << setw(kMaxYearLength) << yearStr.substr(0,kMaxYearLength);
+}
+
+void FictionBook::displayInPatron() const
+{
+    string numCopiesStr = to_string(numCopies);
+    string yearStr = to_string(year);                           //Will have to change to look like hers
+
+    cout << left << "  "
+        << setw(kMaxAuthorLength + 2) << author.substr(0, kMaxAuthorLength)
+        << setw(kMaxTitleLength + 2) << title.substr(0, kMaxTitleLength)
+        << right << setw(kMaxYearLength) << yearStr.substr(0, kMaxYearLength);
 }
 
 bool FictionBook::operator<(const Media& rhs) const

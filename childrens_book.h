@@ -23,13 +23,16 @@ public:
 	/*Overiden create function which creates a new ChildrensBook and 
 	returns it as a pointer */
 	virtual Media* create(istream& infile);
+	virtual Media* createFromCommand(istream& infile);
+
 	virtual ~ChildrensBook();
 
 	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
 	virtual bool checkIn();
 
 	/*Overiden display function which prints author, title, year*/
-	virtual void display() const;
+	virtual void displayInLibrary() const;
+	virtual void displayInPatron() const;
 	virtual bool operator< (const Media& copy) const;
 	virtual bool operator> (const Media& copy) const;
 	virtual bool operator== (const Media& copy) const;

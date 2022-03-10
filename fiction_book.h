@@ -24,20 +24,23 @@ public:
 	/*Overiden create function which creates a new FictionBook and
 	returns it as a pointer */
 	virtual Media* create(istream& infile);
+	virtual Media* createFromCommand(istream& infile);
+
 	virtual ~FictionBook();
 
 	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
 	virtual bool checkIn();
 
 	/*Overiden display function which displays the title, year, Author*/
-	virtual void display() const;
+	virtual void displayInLibrary() const;
+	virtual void displayInPatron() const;
 	virtual bool operator< (const Media& copy) const;
 	virtual bool operator> (const Media& copy) const;
 	virtual bool operator== (const Media& copy) const;
 	virtual bool operator!= (const Media& copy) const;
 
 
-	void changevals(std::string author2, int year2, std::string title2, int copies);
+	void changevals(std::string author2, int year2, std::string title2, int copies); //DELETE THIS?? I belive I will
 private:
 	std::string author;
 };

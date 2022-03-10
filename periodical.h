@@ -1,6 +1,8 @@
 #ifndef PERIODICAL_BOOK_H_
 #define PERIODICAL_BOOK_H_
 #include <iostream>
+#include <string>
+#include <iomanip>
 #include "book.h"
 // ---------------------------------------------------------------------------
 // PeriodicalBook: The PeriodicalBook class is a subclass of the Book class.
@@ -23,13 +25,16 @@ public:
 	/*Overiden create function which creates a new PeriodicalBook and
 	returns it as a pointer */
 	virtual Media* create(istream& infile);
+	virtual Media* createFromCommand(istream& infile);
+
 	virtual ~Periodical();
 
 	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
 	virtual bool checkIn();
 
 	/*Overiden display function which displays the title, year, month*/
-	virtual void display() const;
+	virtual void displayInLibrary() const;
+	virtual void displayInPatron() const;
 	virtual bool operator< (const Media& copy) const;
 	virtual bool operator> (const Media& copy) const;
 	virtual bool operator== (const Media& copy) const;

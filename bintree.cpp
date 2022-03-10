@@ -173,8 +173,7 @@ void BinTree::inorderHelper(const Node* node, ostream& stream) const
 	}	
 	inorderHelper(node->left, stream);	//traverse left
 	//stream << *(node->data) << " ";		//output to stream
-
-	(node->data)->display();	//delete this
+	(node->data)->displayInLibrary();	//delete this		//I might add something where it prints the num of books from here instead of from the book class.
 	stream << endl;				//delete this
 
 	inorderHelper(node->right, stream); //traverse right

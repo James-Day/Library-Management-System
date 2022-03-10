@@ -1,5 +1,15 @@
 #include "patron.h"
 
+Patron::Patron()
+{
+    firstName = "DEFAULT";
+    lastName = "DEFAULT";
+    ID = 0000;
+    for (int i = 0; i < kStartingBookLimit; i++) {
+        all_books[i] = nullptr;
+    }
+}
+
 Patron::Patron(std::string patronName,std::string patronLastName, int patronID)
 {
     firstName = patronName;
@@ -24,25 +34,46 @@ bool Patron::checkOut(Media* checkingOut)
 Media* Patron::returnBook(Media* returnBook)
 {
     for (int i = 0; i < kStartingBookLimit; i++) {
-        if (*all_books[i] == *returnBook) {
-            Media* returnCopy = all_books[i];
-            all_books[i] = nullptr;
-            return returnCopy;
+        if (all_books[i] != nullptr) {
+            if (all_books[i] == returnBook) {
+                Media* returnCopy = all_books[i];
+                all_books[i] = nullptr;
+                return returnCopy;
+            }
         }
     }
     return nullptr;
 }
 
+bool Patron::create(ifstream& infile)// bool just incase we want to update it later to check for valid input or something
+{
+    string first = "";
+    string last = "";
+    int idNumber = 0;
+
+    infile >> idNumber;
+    infile >> last;
+    infile >> first;
+    ID = idNumber;
+    lastName = last;
+    firstName = first;
+
+    return true;
+}
+
 void Patron::displayBooks() const
 {
     for (int i = 0; i < kStartingBookLimit; i++) {
-        all_books[i]->display();
+        if (all_books[i] != nullptr) {
+            all_books[i]->displayInPatron();
+            cout << endl;
+        }
     }
 }
 
 void Patron::displayPatron() const
 {
-    cout << ID << lastName << "," << firstName;
+    cout << ID << " " << lastName << "," << " " << firstName << ":";
 }
 
 int Patron::getID()

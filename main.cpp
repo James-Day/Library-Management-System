@@ -4,7 +4,7 @@
 #include "periodical.h"         //I will remove these later
 #include "bintree.h"
 #include "library.h"
-#include "factory.h"
+#include "media_factory.h"
 #include "patron.h"
 
 using namespace std;
@@ -204,13 +204,13 @@ int main() {
         // TEST DISPLAYS
         Media* a = &Fbook1;
 
-        Fdisplay2.display();
+        Fdisplay2.displayInLibrary();
         cout << endl;
         a = &Cdisplay;
-        a->display();
+        a->displayInLibrary();
         cout << endl;
         a = &Pdisplay;
-        a->display();
+        a->displayInLibrary();
 
         cout << endl << endl << "   TESTING BSTREE" << endl << endl;
 
@@ -229,9 +229,9 @@ int main() {
         FictionBook* h = new FictionBook();
         FictionBook* i = new FictionBook();
 
-        a1->changevals("aaa", 2000, "FactoryFictionBook", 1);
+        a1->changevals("aaa", 9999, "FactoryFictionBook", 1);
         b->changevals("bbb", 2000, "FactoryFictionBook", 1);
-        c->changevals("ccc", 2000, "FactoryFictionBook", 1);
+        c->changevals("ccc", 9999, "FactoryFictionBook", 1);
         d->changevals("ddd", 2000, "FactoryFictionBook", 1);
         e->changevals("eee", 2000, "FactoryFictionBook", 1);
         f->changevals("fff", 2000, "factoryFictionBook", 1);
@@ -267,11 +267,11 @@ int main() {
 
         a2->changevals("aaa", 2000, "FactoryFictionBook", 1);
         b2->changevals("bbb", 2000, "FactoryFictionBook", 1);
-        c2->changevals("ccc", 2000, "FactoryFictionBook", 1);
+        c2->changevals("ccc", 6666, "FactoryFictionBook", 1);
         d2->changevals("ddd", 2000, "FactoryFictionBook", 1);
-        e2->changevals("eee", 2000, "FactoryFictionBook", 1);
+        e2->changevals("eee", 9999, "FactoryFictionBook", 1);
         f2->changevals("zzz", 2000, "factoryFictionBook", 1);
-        g2->changevals("fff", 2000, "aaa", 4);
+        g2->changevals("fff", 9999, "aaa", 4);
         h2->changevals("fff", 2000, "bbb", 2);
         i2->changevals("fff", 2000, "ccc", 3);
 
@@ -336,7 +336,7 @@ int main() {
         tree3.retrieve(*e3, found2);
 
         Periodical* found2_ptr = dynamic_cast<Periodical*>(found2);
-        found2_ptr->display();
+        found2_ptr->displayInLibrary();
 
         cout << endl << endl << "   TESTING LIBRARY" << endl << endl;
         ///////////////////////// LIBRARY TESTING //////////////////////////////////
@@ -384,23 +384,23 @@ int main() {
         Lj3->changevals(3, 2000, "aaa", 3);
 
         LCa2->changevals("aaa", 2000, "FactoryFictionBook", 1);
-        LCb2->changevals("bbb", 2000, "FactoryFictionBook", 1);
+        LCb2->changevals("bbb", 1999, "FactoryFictionBook", 1);
         LCc2->changevals("ccc", 2000, "FactoryFictionBook", 1);
-        LCd2->changevals("ddd", 2000, "FactoryFictionBook", 1);
+        LCd2->changevals("ddd", 5555, "FactoryFictionBook", 1);
         LCe2->changevals("eee", 2000, "FactoryFictionBook", 1);
         LCf2->changevals("zzz", 2000, "factoryFictionBook", 1);
-        LCg2->changevals("fff", 2000, "aaa", 4);
+        LCg2->changevals("fff", 5555, "aaa", 4);
         LCh2->changevals("fff", 2000, "bbb", 2);
         LCi2->changevals("fff", 2000, "ccc", 3);
 
-        LFa->changevals("aaa", 2000, "FactoryFictionBook", 1);
+        LFa->changevals("aaa", 2220, "FactoryFictionBook", 1);
         LFb->changevals("bbb", 2000, "FactoryFictionBook", 1);
-        LFc->changevals("ccc", 2000, "FactoryFictionBook", 1);
+        LFc->changevals("ccc", 1111, "FactoryFictionBook", 1);
         LFd->changevals("ddd", 2000, "FactoryFictionBook", 1);
-        LFe->changevals("eee", 2000, "FactoryFictionBook", 1);
+        LFe->changevals("eee", 1111, "FactoryFictionBook", 1);
         LFf->changevals("fff", 2000, "factoryFictionBook", 1);
         LFg->changevals("fff", 2000, "aaa", 4);
-        LFh->changevals("fff", 2000, "bbb", 2);
+        LFh->changevals("fff", 5555, "bbb", 2);
         LFi->changevals("fff", 2000, "ccc", 3);
 
         Library1.insert(La3, 'P');
@@ -439,7 +439,7 @@ int main() {
         cout << endl << endl << "   TESTING FACTORY" << endl << endl;
 
         ///////////////////////// FACTORY TESTING //////////////////////////////////
-        Factory factory1;
+        MediaFactory factory1;
         factory1.display();
 
         cout << endl << endl << "   TESTING INPUT" << endl << endl;
@@ -449,8 +449,11 @@ int main() {
         Manager libManager;
         libManager.inputMediaFile("data4books.txt");
         libManager.displayLibrary();
-
-
+        libManager.inputPatreonFile("data4patrons.txt");
+        libManager.displayPatronBooks();
+        cout << endl << endl << endl << endl << "AFTER TRANSACTIONS" << endl << endl;
+        libManager.inputTransactions("data4commands.txt");
+        libManager.displayPatronBooks();
 
         cout << endl << endl << "   TESTING PATRON" << endl << endl;
 

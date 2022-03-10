@@ -18,6 +18,7 @@
 
 #include "patron.h"
 const int kMaxHashTableSize = 10;
+class Patron;
 class PatronContainer {
 public:
   PatronContainer();
@@ -32,7 +33,6 @@ public:
 	  struct Node {
 		  Patron* patron = nullptr;//stored data in each node
 		  Node* next = nullptr;// pointer to next node in list
-		  
 	  };
 	  /*Hashtable of all the patrons who are currently
 	registered in the libraries system*/
