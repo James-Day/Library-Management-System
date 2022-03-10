@@ -1,4 +1,5 @@
 #include "patron.h"
+#include "command.h"
 
 Patron::Patron()
 {
@@ -45,6 +46,12 @@ Media* Patron::returnBook(Media* returnBook)
     return nullptr;
 }
 
+bool Patron::addHistory(const Command* history)
+{
+    commandHistory.push_back(history);
+    return true;
+}
+
 bool Patron::create(ifstream& infile)// bool just incase we want to update it later to check for valid input or something
 {
     string first = "";
@@ -74,6 +81,13 @@ void Patron::displayBooks() const
 void Patron::displayPatron() const
 {
     cout << ID << " " << lastName << "," << " " << firstName << ":";
+}
+
+void Patron::displayHistory() const
+{
+    for (int i = 0; i < commandHistory.size(); i++) {
+        commandHistory[i]->display();
+    }
 }
 
 int Patron::getID()

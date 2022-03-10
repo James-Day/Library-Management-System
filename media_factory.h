@@ -39,7 +39,6 @@ public:
     returns a pointer to it. Takes a character to decide which type of media to
     create.*/
     Media* createMedia(const char& ch, istream& infile);
-    void display();                                                                 // will delete
 
 private:
     /* Holds one of each type of media to create new types of that media

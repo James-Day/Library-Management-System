@@ -1,7 +1,9 @@
-#include "check_out.h"
+#include "return_media.h"
 #include "manager.h"
-bool CheckOut::execute(Manager* libraryManager, istream& infile) const
+
+bool ReturnMedia::execute(Manager* libraryManager, istream& infile) const
 {
+
     int patronID = -1;
     char bookType = '0';
     char hardOrSoftCopy;
@@ -43,7 +45,7 @@ bool CheckOut::execute(Manager* libraryManager, istream& infile) const
         return false;
     }
     //LATER ON I HAVE TO CHANGE THIS, THIS BREAKS THE OPEN CLOSE PRINCIPLE, JUST NOT SURE WHAT TO DO
-    foundBook = libraryManager-> library.checkOutMedia(searchableBook, bookType);//CHANGE THE LIBRARY TO HAVE A RETURN FUNCTION AND THEN USE CHECK IN MEDIA HERE, AND WHEN ITS A HARD COPY USE CHECK IN / CHECK OUT BUT IF NOT A HARD COPY THEN JUST USE RETRIEVE
+    foundBook = libraryManager->library.checkOutMedia(searchableBook, bookType);        //CHANGE THE LIBRARY TO HAVE A RETURN FUNCTION AND THEN USE CHECK IN MEDIA HERE, AND WHEN ITS A HARD COPY USE CHECK IN / CHECK OUT BUT IF NOT A HARD COPY THEN JUST USE RETRIEVE
     if (foundBook == nullptr) {
         cout << "Book was not found in the library" << endl;
         return false;
@@ -53,8 +55,8 @@ bool CheckOut::execute(Manager* libraryManager, istream& infile) const
 
     if (hardOrSoftCopy == 'H') { //Definitally need to change this, just not sure what to do with it
         //if there aren't enough copies to check out then don't give the patron a book
-        if (foundBook->checkOut()) { //maybe this should be in the library's checkout function, really not sure
-            retrievedPatron->checkOut(foundBook);
+        if (foundBook->checkIn()) { //maybe this should be in the library's checkout function, really not sure
+            retrievedPatron->returnBook(foundBook);
             if (searchableBook != nullptr) {
                 delete searchableBook;
             }
@@ -68,8 +70,9 @@ bool CheckOut::execute(Manager* libraryManager, istream& infile) const
     //this could be better by creating a seperate function in the factory
     //makes a "searchable book that is not a pointer, and doesn't use heap"
     return false;
+
 }
 
-void CheckOut::display() const
+void ReturnMedia::display() const
 {
 }

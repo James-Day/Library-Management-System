@@ -9,14 +9,15 @@
 #define RETURN_MEDIA_H_
 
 #include "command.h"
+#include "media.h"
+#include "patron.h"
 using namespace std;
 
-class ReturnMedia : Command {
+class ReturnMedia : public Command {
 public:
 
-    virtual bool execute(Manager& libraryManager, istream& infile) const;
+    virtual bool execute(Manager* libraryManager, istream& infile) const;
     virtual void display() const;                                                                 // will delete!
 
-private:
 };
 #endif

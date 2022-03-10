@@ -37,16 +37,6 @@ Media* MediaFactory::createMedia(const char& ch , istream& infile)
     return mediaFactory[factoryIndex]->create(infile);
 }
 
-void MediaFactory::display()
-{
-    mediaFactory[hash('C')]->displayInLibrary();
-    cout << endl;
-    mediaFactory[hash('F')]->displayInLibrary();                                         //will have to remove this later
-    cout << endl;   
-    mediaFactory[hash('P')]->displayInLibrary();
-    cout << endl;
-}
-
 int MediaFactory::hash(const char& ch) const
 {
     return ch - 'A'; 

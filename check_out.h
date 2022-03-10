@@ -12,12 +12,11 @@
 #include "media.h"
 #include "patron.h"
 using namespace std;
-class CheckOut: Command {
+class CheckOut: public Command {
 public:
 
     virtual bool execute(Manager* libraryManager, istream& infile) const;
     virtual void display() const;                                                                 // will delete!
 
-private:
 };
 #endif

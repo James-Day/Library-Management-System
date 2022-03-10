@@ -24,8 +24,7 @@ public:
   PatronContainer();
   //bool Remove(Patron* removePatron);  //return false if not in the hashTable 
   bool Insert(Patron* insertPatron); //return false for duplicate
-  void displayPatron(Patron&) const;
-  void displayAll() const;
+  void displayPatron(Patron& patron) const;
   bool retrievePatron(int patronID, Patron*& retrievedPatron);
 
   private:

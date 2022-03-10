@@ -440,7 +440,7 @@ int main() {
 
         ///////////////////////// FACTORY TESTING //////////////////////////////////
         MediaFactory factory1;
-        factory1.display();
+       // factory1.display();
 
         cout << endl << endl << "   TESTING INPUT" << endl << endl;
 
@@ -448,12 +448,12 @@ int main() {
         ///////////////////////// INPUT TESTING //////////////////////////////////
         Manager libManager;
         libManager.inputMediaFile("data4books.txt");
-        libManager.displayLibrary();
+       // libManager.displayLibrary();
         libManager.inputPatreonFile("data4patrons.txt");
-        libManager.displayPatronBooks();
+        //ibManager.displayPatronBooks();
         cout << endl << endl << endl << endl << "AFTER TRANSACTIONS" << endl << endl;
         libManager.inputTransactions("data4commands.txt");
-        libManager.displayPatronBooks();
+       // libManager.displayPatronBooks();
 
         cout << endl << endl << "   TESTING PATRON" << endl << endl;
 

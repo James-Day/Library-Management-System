@@ -28,23 +28,13 @@ class Manager {
 public:
     Manager();                               // default constructor
 
-    // checks out media for a patron
-    bool checkOutMedia(ifstream& infile);
-
-    // returns a media for a patron
-    bool returnMedia(ifstream& infile);
-
-    // prints the history of a patron's transaction history
-    void displayPatronHistory() const;
-    void displayPatronBooks() const;
-
-    // prints the library books sorted in each category
-    void displayLibrary() const;
-
     void inputMediaFile(const string infile);       // initializes books of library // This will be moved to a transaction class but for now it's fine
     void inputPatreonFile(const string infile);     // initializes patrons
     void inputTransactions(const string infile);    // initializes book transactions
     friend class CheckOut;
+    friend class ReturnMedia;
+    friend class DisplayLibrary;
+    friend class PatronHistory;
 
 private:
     Library library;

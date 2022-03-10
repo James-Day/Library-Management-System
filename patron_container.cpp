@@ -38,21 +38,6 @@ bool PatronContainer::Insert(Patron* insertPatron)
     return false;
 }
 
-void PatronContainer::displayAll() const
-{
-    for (int i = 0; i < kMaxHashTableSize; i++) {
-        if (patrons[i] != nullptr) {
-            Node* cur = patrons[i];
-            while (cur != nullptr) {
-                cur->patron->displayPatron();
-                cout << endl;
-                cur->patron->displayBooks();
-                cur = cur->next;
-            }
-        }
-    }
-}
-
 bool PatronContainer::retrievePatron(int patronID, Patron*& retrievedPatron)
 {
     int hashedID = hash(patronID);

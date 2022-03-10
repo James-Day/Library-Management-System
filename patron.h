@@ -14,6 +14,7 @@
 #define PATRON_H_
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "media.h"
 const int kStartingBookLimit = 10;
 const int kMaxTransactionHistory = 10;
@@ -27,10 +28,12 @@ public:
     bool checkOut(Media* checkingOut);//inserts Media into "allBooks" hashtable
    // HashTable& getBooks(); //return the hashtable with all the books
     Media* returnBook(Media* returnBook); //return one book
+    bool addHistory(const Command* history);
 
     bool create(ifstream& infile);
     void displayBooks() const;
     void displayPatron() const;
+    void displayHistory() const;
     int getID();
 private:
     /*Uses a hashtable to store a list of all the
@@ -38,7 +41,7 @@ private:
       // HashTable allBooks;
     Media* all_books[kStartingBookLimit];
     //Command* transactionHistory[kMaxTransactionHistory];
-    //Command* commandHistory[x];
+    std::vector<const Command*> commandHistory;
     std::string firstName;
     std::string lastName;
     int ID;

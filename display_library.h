@@ -11,12 +11,11 @@
 #include "command.h"
 using namespace std;
 
-class DisplayLibrary : Command {
+class DisplayLibrary : public Command {
 public:
 
-    virtual bool execute(Manager& libraryManager, istream& infile) const;
+    virtual bool execute(Manager* libraryManager, istream& infile) const;
     virtual void display() const;                                                                 // will delete!
 
-private:
 };
 #endif
