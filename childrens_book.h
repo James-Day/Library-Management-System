@@ -17,31 +17,32 @@
 
 //For now all children books in the library will have five copies
 const int kNumChildrenBooks = 5;
-class ChildrensBook: public Book {
+class ChildrensBook : public Book {
 public:
-	ChildrensBook();
-	/*Overiden create function which creates a new ChildrensBook and 
-	returns it as a pointer */
-	virtual Media* create(istream& infile);
-	virtual Media* createFromCommand(istream& infile);
+    ChildrensBook();
+    /*Overiden create function which creates a new ChildrensBook and
+    returns it as a pointer */
+    virtual Media* create(istream& infile);
+    virtual Media* createFromCommand(istream& infile);
 
-	virtual ~ChildrensBook();
+    virtual ~ChildrensBook();
 
-	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
-	virtual bool checkIn();
+    virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
+    virtual void checkIn();
 
-	/*Overiden display function which prints author, title, year*/
-	virtual void displayInLibrary() const;
-	virtual void displayInPatron() const;
-	virtual bool operator< (const Media& copy) const;
-	virtual bool operator> (const Media& copy) const;
-	virtual bool operator== (const Media& copy) const;
-	virtual bool operator!= (const Media& copy) const;
+    /*Overiden display function which prints author, title, year*/
+    virtual void displayInLibrary() const;
+    virtual void displayInPatron() const;
+    virtual void displayTitle() const;
+    virtual void displayComponents() const;
 
-	void changevals(std::string author2, int year2, std::string title2, int copies);
+    virtual bool operator< (const Media& copy) const;
+    virtual bool operator> (const Media& copy) const;
+    virtual bool operator== (const Media& copy) const;
+    virtual bool operator!= (const Media& copy) const;
 
 private:
-	std::string author;
+    std::string author;
 };
 
 #endif

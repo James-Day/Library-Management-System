@@ -18,6 +18,7 @@
 #include "library.h"
 #include "media_factory.h"
 #include "command_factory.h"
+#include "format_factory.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -41,5 +42,7 @@ private:
     PatronContainer patrons;
     MediaFactory mediaFactory;
     CommandFactory commandFactory;
+    FormatFactory formatFactory;
+
 };
 #endif

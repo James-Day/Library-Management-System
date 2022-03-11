@@ -1,95 +1,137 @@
 #include "patron.h"
 #include "command.h"
-
+//--------------------------------------------------------------------------
+// Patron (empty constructor)
+/* initializes Patrons first name, last name, ID, and all book pointers */
 Patron::Patron()
 {
-    firstName = "DEFAULT";
-    lastName = "DEFAULT";
+    first_name_ = "DEFAULT";
+    last_name_ = "DEFAULT";
     ID = 0000;
-    for (int i = 0; i < kStartingBookLimit; i++) {
+    for (int i = 0; i < all_books.size(); i++) {
         all_books[i] = nullptr;
     }
 }
 
-Patron::Patron(std::string patronName,std::string patronLastName, int patronID)
+//--------------------------------------------------------------------------
+// Patron (destructor)
+/* deletes all the commands in the patrons history*/
+Patron::~Patron()
 {
-    firstName = patronName;
-    lastName = patronLastName;
-    ID = patronID;
-    for (int i = 0; i < kStartingBookLimit; i++) {
+    for (int i = 0; i < command_history_.size(); i++) {
+        delete command_history_[i];
+    }
+}
+//--------------------------------------------------------------------------
+// Patron (constructor)
+/* this patron is initialized with a first name, last name, and a ID*/
+Patron::Patron(std::string patron_first_name,
+    std::string patron_last_name, int patron_ID)
+{
+    first_name_ = patron_first_name;
+    last_name_ = patron_last_name;
+    ID = patron_ID;
+    for (int i = 0; i < all_books.size(); i++) {
         all_books[i] = nullptr;
     }
 }
 
-bool Patron::checkOut(Media* checkingOut)
+//--------------------------------------------------------------------------
+// checkOut
+/* the given book is entered into this patrons list of books*/
+bool Patron::checkOut(Media* checking_out)
 {
-    for (int i = 0; i < kStartingBookLimit; i++) {
-        if (all_books[i] == nullptr) {
-            all_books[i] = checkingOut;
-            return true;
-        }
-    }
+    all_books.push_back(checking_out);
     return false;
 }
 
-Media* Patron::returnBook(Media* returnBook)
+//--------------------------------------------------------------------------
+// returnMedia
+/* searches through the patrons books/medias that are currently checked out.
+   If the book is found then the book is returned*/
+Media* Patron::returnMedia(Media* return_book)
 {
-    for (int i = 0; i < kStartingBookLimit; i++) {
-        if (all_books[i] != nullptr) {
-            if (all_books[i] == returnBook) {
-                Media* returnCopy = all_books[i];
+    for (int i = 0; i < all_books.size(); i++) {// check each media to find the 
+        if (all_books[i] != nullptr) {         // one that needs to be returned
+            if (all_books[i] == return_book) { //book found
+                Media* return_copy = all_books[i];
                 all_books[i] = nullptr;
-                return returnCopy;
+                return return_copy;
             }
         }
     }
     return nullptr;
 }
 
+//--------------------------------------------------------------------------
+// addHistory
+/* adds a history to the end list of users history of commands*/
 bool Patron::addHistory(const Command* history)
 {
-    commandHistory.push_back(history);
+    command_history_.push_back(history);
     return true;
 }
-
-bool Patron::create(ifstream& infile)// bool just incase we want to update it later to check for valid input or something
+//--------------------------------------------------------------------------
+// create
+/* given an input file, this function will read in the patrons ID number,
+   last, and first name. if a patrons given ID is to short or too long, then
+   false will be returned, otherwise true will be returned*/
+bool Patron::create(ifstream& infile)
 {
     string first = "";
     string last = "";
-    int idNumber = 0;
+    int ID_number = 0;
 
-    infile >> idNumber;
+    infile >> ID_number;
+
     infile >> last;
     infile >> first;
-    ID = idNumber;
-    lastName = last;
-    firstName = first;
+    ID = ID_number;
+    last_name_ = last;
+    first_name_ = first;
 
-    return true;
+    //incorrect length
+    if (ID_number > 999 && ID_number < 10000) {
+        return true;
+    }
+    else {
+        cout << "ID number is incorrect length" << endl;
+        return false;
+    }
 }
-
+//--------------------------------------------------------------------------
+// displayBooks
+// all books that are currently checked out from this patron will be displayed
 void Patron::displayBooks() const
 {
-    for (int i = 0; i < kStartingBookLimit; i++) {
+    for (int i = 0; i < all_books.size(); i++) {
         if (all_books[i] != nullptr) {
             all_books[i]->displayInPatron();
             cout << endl;
         }
     }
 }
-
+//--------------------------------------------------------------------------
+// displayPatron
+/* displays information of the patron including ID and name*/
 void Patron::displayPatron() const
 {
-    cout << ID << " " << lastName << "," << " " << firstName << ":";
+    cout << ID << " " << last_name_ << "," << " " << first_name_ << ":";
+    cout << endl;
 }
-
+//--------------------------------------------------------------------------
+// displayHistory
+/* displays all command histories of this patron*/
 void Patron::displayHistory() const
 {
-    for (int i = 0; i < commandHistory.size(); i++) {
-        commandHistory[i]->display();
+    for (int i = 0; i < command_history_.size(); i++) {
+        command_history_[i]->display();
+        cout << endl;
     }
 }
-
+//--------------------------------------------------------------------------
+// getID
+/* returns the PatronsID*/
 int Patron::getID()
 {
     return ID;

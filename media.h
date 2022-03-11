@@ -16,29 +16,32 @@
 using namespace std;
 class Media {
 public:
-	/* No constructor for the media class?
-	* 
-	/*overwritten by all media subclasses and will return a pointer to
-	a new media subclass object that is created*/
-	virtual Media* create(istream& infile) =0;
-	/* Creates a media from the command input file, this allows for the media
-	input file and the command input file to function seperately
-	overwritten by all media subclasses and will return a pointer to
-	a new media subclass object that is created*/
-	virtual Media* createFromCommand(istream& infile) = 0;
-	virtual ~Media() =0;
-	virtual void displayInLibrary() const =0;
-	virtual void displayInPatron() const = 0;
-	virtual bool operator< (const Media& rhs) const = 0;
-	virtual bool operator> (const Media& rhs) const = 0;
-	virtual bool operator== (const Media& rhs) const = 0;
-	virtual bool operator!= (const Media& rhs) const = 0;
+    /* No constructor for the media class?
+    *
+    /*overwritten by all media subclasses and will return a pointer to
+    a new media subclass object that is created*/
+    virtual Media* create(istream& infile) = 0;
+    /* Creates a media from the command input file, this allows for the media
+    input file and the command input file to function seperately
+    overwritten by all media subclasses and will return a pointer to
+    a new media subclass object that is created*/
+    virtual Media* createFromCommand(istream& infile) = 0;
+    virtual ~Media() = 0;
+    virtual void displayInLibrary() const = 0;
+    virtual void displayInPatron() const = 0;
+    virtual void displayTitle() const = 0;
+    virtual void displayComponents() const = 0;
 
-	virtual bool checkOut() = 0;
-	virtual bool checkIn() = 0;
-	
+    virtual bool operator< (const Media& rhs) const = 0;
+    virtual bool operator> (const Media& rhs) const = 0;
+    virtual bool operator== (const Media& rhs) const = 0;
+    virtual bool operator!= (const Media& rhs) const = 0;
+
+    virtual bool checkOut() = 0;
+    virtual void checkIn() = 0;
+
 protected:
-	//might add some data for media objects here
+    //might add some data for media objects here
 };
 
 #endif

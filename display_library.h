@@ -13,9 +13,11 @@ using namespace std;
 
 class DisplayLibrary : public Command {
 public:
+    virtual ~DisplayLibrary();
 
-    virtual bool execute(Manager* libraryManager, istream& infile) const;
+    virtual bool execute(Manager* libraryManager, istream& infile);
     virtual void display() const;                                                                 // will delete!
+    virtual Command* create();
 
 };
 #endif

@@ -27,17 +27,17 @@ public:
     MediaFactory();
     /*Deletes each of the media objects that are in the mediaFactory
     This will call Media destructor*/
-     ~MediaFactory();                                                              
+    ~MediaFactory();
 
     /*uses a hash and mediaFactory to create the correct type of media from
     the command input file. This is different from reading from the media file
     which helps future proof this system so that command inputs and
     media inputs are not linked together.*/
-     Media* createMediaFromCommand(const char& ch, istream& infile);
+    Media* createMediaFromCommand(const char& ch, istream& infile);
 
-     /*uses hash and mediaFactory to create the correct type of media and
-    returns a pointer to it. Takes a character to decide which type of media to
-    create.*/
+    /*uses hash and mediaFactory to create the correct type of media and
+   returns a pointer to it. Takes a character to decide which type of media to
+   create.*/
     Media* createMedia(const char& ch, istream& infile);
 
 private:
@@ -45,7 +45,7 @@ private:
     size is only large enough for one character codes
     characters(in the future if we want to have more than 26
     types of media we could create a method that grows the array)*/
-    Media* mediaFactory[kNumTypesOfBooks];
+    Media* media_factory_[kNumTypesOfBooks];
 
     // returns the index of the array to use for creating the Media
     int hash(const char& ch) const;

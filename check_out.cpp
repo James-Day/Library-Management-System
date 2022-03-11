@@ -1,14 +1,23 @@
 #include "check_out.h"
 #include "manager.h"
-bool CheckOut::execute(Manager* libraryManager, istream& infile) const
+CheckOut::CheckOut()
+{
+    media_checked_out = nullptr;
+}
+CheckOut::~CheckOut()
+{
+    //empty
+}
+bool CheckOut::execute(Manager* libraryManager, istream& infile)
 {
     int patronID = -1;
-    char bookType = '0';
-    char hardOrSoftCopy;
-    Media* searchableBook = nullptr;
-    Media* foundBook = nullptr;
-    Patron* retrievedPatron = nullptr;;
-    string s;                  // used to read to end of line holding size
+    char media_type = '0';
+    char format_type = '0';
+    /*This media is created from the command fileand is only created to
+    search through the library with*/
+    Media* searchable_media = nullptr;
+    Media* found_media = nullptr;
+    Patron* retrieved_patron = nullptr;;
 
     if (infile.eof()) {
         cout << "No Patron ID was given." << endl;
@@ -16,60 +25,94 @@ bool CheckOut::execute(Manager* libraryManager, istream& infile) const
     }
     infile >> patronID;
     if (patronID != -1) {
-        if (!(libraryManager->patrons.retrievePatron(patronID, retrievedPatron))) {
+        if (!(libraryManager->patrons.
+            retrievePatron(patronID, retrieved_patron))) {
             cout << "No Patron was found with ID: " << patronID << endl;
             return false;
         }
     }
     else {
-        //no patron ID given
-        return false;
+        cout << "No Patron ID was given." << endl;
+        return false; // no patron ID given
     }
     if (infile.eof()) {
-        cout << "No book type was given." << endl;
+        cout << "No media type was given." << endl;
         return false; // no book type to read
     }
-    infile >> bookType;
+    infile >> media_type;
+
+    if (media_type == '0') {
+        cout << "No media type was given." << endl;
+        return false; // no book type to read
+    }
+    if (infile.eof()) {
+        cout << "No format type was given." << endl;
+        return false; // no book type to read
+    }
+
+    infile >> format_type;
+
+    if (format_type == '0') {
+        cout << "No format type was given." << endl;
+        return false; //no format type given
+    }
 
     if (infile.eof()) {
-        cout << "No book was given" << endl;
+        cout << "No media was given" << endl;
         return false; // no book to read
     }
 
-    infile >> hardOrSoftCopy;
-
-    if (!(searchableBook = libraryManager->mediaFactory.createMediaFromCommand(bookType, infile))) { // will create a book that will only be used for searching.
+    /* will create a media that will only be used for searching.
+       this book will be searched for in the library */
+    if (!(searchable_media = libraryManager->
+        mediaFactory.createMediaFromCommand(media_type, infile))) {
         cout << "Invalid book type given" << endl;
         return false;
     }
-    //LATER ON I HAVE TO CHANGE THIS, THIS BREAKS THE OPEN CLOSE PRINCIPLE, JUST NOT SURE WHAT TO DO
-    foundBook = libraryManager-> library.checkOutMedia(searchableBook, bookType);//CHANGE THE LIBRARY TO HAVE A RETURN FUNCTION AND THEN USE CHECK IN MEDIA HERE, AND WHEN ITS A HARD COPY USE CHECK IN / CHECK OUT BUT IF NOT A HARD COPY THEN JUST USE RETRIEVE
-    if (foundBook == nullptr) {
-        cout << "Book was not found in the library" << endl;
+    /*searches the library to find the media that will be checked out
+      if the media is not found in the library then a book will not be checked
+      out*/
+    found_media = libraryManager->
+        library.checkOutMedia(searchable_media, media_type);
+    if (found_media == nullptr) {
+        searchable_media->displayTitle();
+        cout << " was not found in the library" << endl;
+        delete searchable_media;
         return false;
     }
 
-    retrievedPatron->addHistory(this);
-
-    if (hardOrSoftCopy == 'H') { //Definitally need to change this, just not sure what to do with it
-        //if there aren't enough copies to check out then don't give the patron a book
-        if (foundBook->checkOut()) { //maybe this should be in the library's checkout function, really not sure
-            retrievedPatron->checkOut(foundBook);
-            if (searchableBook != nullptr) {
-                delete searchableBook;
-            }
-            return true;
+    /*The format factory is used to indicate what should happen when the media
+      is checked out. For example if a hard copy is checked out we lower the
+      number of copies in the library by 1, but if it's just a digital
+      download then we don't need to lower the number of copies*/
+    if (libraryManager->formatFactory.checkOut(found_media, format_type)) {
+        retrieved_patron->checkOut(found_media);
+        if (searchable_media != nullptr) {
+            delete searchable_media;
         }
+        //media is stored in the command for command history
+        media_checked_out = found_media;
+        //update the patrons history with this command
+        retrieved_patron->addHistory(this);
+        return true;
     }
-    if (searchableBook != nullptr) {
-        delete searchableBook;
+    else { //invalid format type given
+        if (searchable_media != nullptr) {
+            delete searchable_media;
+        }
+        cout << "invalid format type" << endl;
+        return false;
     }
-    //this is a book that is created only to search the tree 
-    //this could be better by creating a seperate function in the factory
-    //makes a "searchable book that is not a pointer, and doesn't use heap"
-    return false;
 }
 
 void CheckOut::display() const
 {
+    cout << left << setw(kIndentSize) << "" << setw(kCommandMaxLength)
+        << "CheckOut";
+    media_checked_out->displayInPatron();
+}
+
+Command* CheckOut::create()
+{
+    return new CheckOut;
 }

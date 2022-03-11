@@ -27,51 +27,51 @@ using namespace std;
 
 class BinTree {
 public:
-	/* constructor which creates the root of the binary
-	tree and sets it to nullptr */
-	BinTree();
+    /* constructor which creates the root of the binary
+    tree and sets it to nullptr */
+    BinTree();
 
-	//Constructor for Bintree sets name, and sets root to nullptr
-	BinTree(string nameForTree);
+    //Constructor for Bintree sets name, and sets root to nullptr
+    BinTree(string nameForTree);
 
-	// destructor for deallocating memory when the BinTree falls out of scope
-	~BinTree();
+    // destructor for deallocating memory when the BinTree falls out of scope
+    ~BinTree();
 
-	// inserts the data into the tree, returns true if successful
-	bool insert(Media* data);
+    // inserts the data into the tree, returns true if successful
+    bool insert(Media* data);
 
-	/* retrieves data from the tree and updates the second parameter to a
-	copy of the data. returns true if the the NodeData is found*/
-	bool retrieve(const Media& find, Media*& retrieved) const;
+    /* retrieves data from the tree and updates the second parameter to a
+    copy of the data. returns true if the the NodeData is found*/
+    bool retrieve(const Media& find, Media*& retrieved) const;
 
-	// empties the tree including data in each node
-	void makeEmpty();
+    // empties the tree including data in each node
+    void makeEmpty();
 
-	// returns true if the tree is empty (has no nodes)
-	bool isEmpty() const;
+    // returns true if the tree is empty (has no nodes)
+    bool isEmpty() const;
 
-	//Iostream overload, outputs the tree inorder to the stream.
-	friend ostream& operator<<(ostream& stream, const BinTree& rhs);
+    //Iostream overload, outputs the tree inorder to the stream.
+    friend ostream& operator<<(ostream& stream, const BinTree& rhs);
 
-	string getName() const;
+    string getName() const;
 private:
-	//Node structure that holds a pointer to data being held as well as
-	// left and right pointers
-	struct Node {
-		Media* data = nullptr;//stored data in each node
-		Node* right = nullptr;// pointer to another node which is greater than 
-		Node* left = nullptr; // pointer to another node which is less than 
-	};
-	/* pointer to the root / top of the BinTree.
-	Used to find data within the tree*/
-	Node* root = nullptr;
-	string name;
+    //Node structure that holds a pointer to data being held as well as
+    // left and right pointers
+    struct Node {
+        Media* data = nullptr;//stored data in each node
+        Node* right = nullptr;// pointer to another node which is greater than 
+        Node* left = nullptr; // pointer to another node which is less than 
+    };
+    /* pointer to the root / top of the BinTree.
+    Used to find data within the tree*/
+    Node* root = nullptr;
+    string name;
 
-	// recursive helper for << operator
-	void inorderHelper(const Node* node, ostream& stream) const;
+    // recursive helper for << operator
+    void inorderHelper(const Node* node, ostream& stream) const;
 
-	//recursive helper for makeEmpty
-	void makeEmptyHelper(Node* current);
+    //recursive helper for makeEmpty
+    void makeEmptyHelper(Node* current);
 };
 
 #endif

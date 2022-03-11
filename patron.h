@@ -16,18 +16,17 @@
 #include <fstream>
 #include <vector>
 #include "media.h"
-const int kStartingBookLimit = 10;
-const int kMaxTransactionHistory = 10;
 class Command;
 
 class Patron
 {
 public:
     Patron();
+    ~Patron();
     Patron(std::string patronName, std::string patronLastName, int id);
     bool checkOut(Media* checkingOut);//inserts Media into "allBooks" hashtable
    // HashTable& getBooks(); //return the hashtable with all the books
-    Media* returnBook(Media* returnBook); //return one book
+    Media* returnMedia(Media* returnBook); //return one book
     bool addHistory(const Command* history);
 
     bool create(ifstream& infile);
@@ -38,12 +37,12 @@ public:
 private:
     /*Uses a hashtable to store a list of all the
       books a patron has checked out currently*/
-      // HashTable allBooks;
-    Media* all_books[kStartingBookLimit];
+      //change to a vector
+    std::vector <Media*> all_books;
     //Command* transactionHistory[kMaxTransactionHistory];
-    std::vector<const Command*> commandHistory;
-    std::string firstName;
-    std::string lastName;
+    std::vector<const Command*> command_history_;
+    std::string first_name_;
+    std::string last_name_;
     int ID;
 };
 

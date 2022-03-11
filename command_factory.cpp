@@ -6,7 +6,7 @@ CommandFactory::CommandFactory()
         commandFactory[i] = nullptr;
     }
     commandFactory[hash('C')] = new CheckOut();
-    commandFactory[hash('D')] = new DisplayLibrary();      
+    commandFactory[hash('D')] = new DisplayLibrary();
     commandFactory[hash('R')] = new ReturnMedia();
     commandFactory[hash('H')] = new PatronHistory();
 
@@ -25,7 +25,14 @@ bool CommandFactory::executeCommand(Manager* libraryManager, const char& ch, ist
     if ((factoryIndex > 25 || factoryIndex < 0) || (commandFactory[factoryIndex] == nullptr)) {
         return false;
     }
-   return commandFactory[factoryIndex]->execute(libraryManager,infile);
+    Command* newCommand = nullptr;
+    newCommand = commandFactory[factoryIndex]->create();
+    if (!newCommand->execute(libraryManager, infile)) {
+        delete newCommand;
+        return false;
+    }
+
+    return true;
 }
 
 int CommandFactory::hash(const char& ch) const

@@ -22,8 +22,8 @@ Media* ChildrensBook::create(std::istream& infile)
     infile.get();                     // get (and ignore) blank before author
     getline(infile, authorStr, ',');
     createdBook->author = authorStr;
-    getline(infile, titleStr, ',');
     infile.get();                     // get (and ignore) blank before author
+    getline(infile, titleStr, ',');
     createdBook->title = titleStr;
     infile >> date;
     createdBook->year = date;
@@ -38,7 +38,8 @@ Media* ChildrensBook::createFromCommand(istream& infile)
     string titleStr = "";
 
     ChildrensBook* createdBook = new ChildrensBook();
-    infile.get();                     // get (and ignore) blank before author
+
+    infile.get();                     // get (and ignore) blank before title
     getline(infile, titleStr, ',');
     createdBook->title = titleStr;
     infile.get();                     // get (and ignore) blank before author
@@ -59,18 +60,18 @@ bool ChildrensBook::checkOut()
         numCopies--;
         return true;
     }
+    cout << "No coppies left to check out" << endl;
     return false;
 }
 
-bool ChildrensBook::checkIn()
+void ChildrensBook::checkIn()
 {
     numCopies++;
-    return true;
 }
 
 void ChildrensBook::displayInLibrary() const
 {
-                                                    
+
     string numCopiesStr = to_string(numCopies);
     string yearStr = to_string(year);
 
@@ -86,10 +87,20 @@ void ChildrensBook::displayInPatron() const
     string numCopiesStr = to_string(numCopies);
     string yearStr = to_string(year);
 
-    cout << left << "  " //Will have to change to look like hers
+    cout << left << setw(kDisplayIndentSize) << ""
         << setw(kMaxAuthorLength + 2) << author.substr(0, kMaxAuthorLength)
         << setw(kMaxTitleLength + 2) << title.substr(0, kMaxTitleLength)
         << right << setw(kMaxYearLength) << yearStr.substr(0, kMaxYearLength);
+}
+
+void ChildrensBook::displayTitle() const
+{
+    cout << left << setw(kMaxTitleLength + 2) << title.substr(0, kMaxTitleLength);
+}
+
+void ChildrensBook::displayComponents() const
+{
+    cout << "AVAIL " << "AUTHOR" << setw(18) << "" << "TITLE" << setw(33) << "" << "YEAR" << endl;
 }
 
 bool ChildrensBook::operator<(const Media& rhs) const
@@ -135,10 +146,4 @@ bool ChildrensBook::operator==(const Media& rhs) const
 bool ChildrensBook::operator!=(const Media& copy) const
 {
     return !(*this == copy);
-}
-void ChildrensBook::changevals(std::string author2, int year2, std::string title2, int copies) {       //DELETE THIS ONLY FOR TESTING
-    author = author2;
-    year = year2;
-    title = title2;
-    numCopies = copies;
 }

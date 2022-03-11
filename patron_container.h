@@ -20,23 +20,24 @@
 const int kMaxHashTableSize = 10;
 class Patron;
 class PatronContainer {
+private:
+    struct Node {
+        Patron* patron = nullptr;//stored data in each node
+        Node* next = nullptr;// pointer to next node in list
+    };
 public:
-  PatronContainer();
-  //bool Remove(Patron* removePatron);  //return false if not in the hashTable 
-  bool Insert(Patron* insertPatron); //return false for duplicate
-  void displayPatron(Patron& patron) const;
-  bool retrievePatron(int patronID, Patron*& retrievedPatron);
+    PatronContainer();
+    ~PatronContainer();
+    bool Insert(Patron* insert_patron); //return false for duplicate
+    bool retrievePatron(int patron_ID, Patron*& retrieved_patron);
 
-  private:
-  //HashTable allPatrons;
-	  struct Node {
-		  Patron* patron = nullptr;//stored data in each node
-		  Node* next = nullptr;// pointer to next node in list
-	  };
-	  /*Hashtable of all the patrons who are currently
-	registered in the libraries system*/
-	  Node* patrons[kMaxHashTableSize];
-	  //Returns the table index of the patron
-	  int hash(int patronID);
+private:
+    void RemoveFront(Node* remove_node);
+
+    /*Hashtable of all the patrons who are currently
+  registered in the libraries system*/
+    Node* patrons_[kMaxHashTableSize];
+    //Returns the table index of the patron
+    int hash(int patron_ID);
 };
 #endif

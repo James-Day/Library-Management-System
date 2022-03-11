@@ -21,31 +21,33 @@ const int kMaxMonthLength = 4;
 
 class Periodical : public Book {
 public:
-	Periodical();
-	/*Overiden create function which creates a new PeriodicalBook and
-	returns it as a pointer */
-	virtual Media* create(istream& infile);
-	virtual Media* createFromCommand(istream& infile);
+    Periodical();
+    /*Overiden create function which creates a new PeriodicalBook and
+    returns it as a pointer */
+    virtual Media* create(istream& infile);
+    virtual Media* createFromCommand(istream& infile);
 
-	virtual ~Periodical();
+    virtual ~Periodical();
 
-	virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
-	virtual bool checkIn();
+    virtual bool checkOut();						//I'm not sure if all of these still need to be virtual, I should check the internet and ask the prof in office hours
+    virtual void checkIn();
 
-	/*Overiden display function which displays the title, year, month*/
-	virtual void displayInLibrary() const;
-	virtual void displayInPatron() const;
-	virtual bool operator< (const Media& copy) const;
-	virtual bool operator> (const Media& copy) const;
-	virtual bool operator== (const Media& copy) const;
-	virtual bool operator!= (const Media& copy) const;
+    /*Overiden display function which displays the title, year, month*/
+    virtual void displayInLibrary() const;
+    virtual void displayInPatron() const;
+    virtual void displayTitle() const;
+    virtual void displayComponents() const;
 
-	void changevals(int months2, int year2, std::string title2, int copies);
+    virtual bool operator< (const Media& copy) const;
+    virtual bool operator> (const Media& copy) const;
+    virtual bool operator== (const Media& copy) const;
+    virtual bool operator!= (const Media& copy) const;
+
 
 private:
-	/*The month the periodical was published.when comparing dates, the year
-	and the month will be used*/
-	int month;
+    /*The month the periodical was published.when comparing dates, the year
+    and the month will be used*/
+    int month_;
 };
 
 #endif

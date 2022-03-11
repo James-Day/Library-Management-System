@@ -12,30 +12,32 @@ const int kMaxTitleLength = 36;
 const int kMaxAuthorLength = 22;
 const int kMaxYearLength = 4;
 const int kMaxNumBooksLength = 4;
+const int kDisplayIndentSize = 2;
 
 class Book : public Media {
 public:
-	virtual Media* create(istream& infile) = 0;
-	virtual void displayInLibrary() const = 0;
-	virtual void displayInPatron() const = 0;
+    virtual Media* create(istream& infile) = 0;
+    virtual void displayInLibrary() const = 0;
+    virtual void displayInPatron() const = 0;
+    virtual void displayTitle() const = 0;
 
-	virtual bool operator< (const Media& rhs) const = 0;
-	virtual bool operator> (const Media& rhs) const = 0;
-	virtual bool operator== (const Media& rhs) const = 0;
-	virtual bool operator!= (const Media& rhs) const = 0;
+    virtual bool operator< (const Media& rhs) const = 0;
+    virtual bool operator> (const Media& rhs) const = 0;
+    virtual bool operator== (const Media& rhs) const = 0;
+    virtual bool operator!= (const Media& rhs) const = 0;
 
-	virtual bool checkOut() = 0;
-	virtual bool checkIn() = 0;
+    virtual bool checkOut() = 0;
+    virtual void checkIn() = 0;
 
 protected:
-	/*Number of copies of this media in the library. When a patron checks out
-	 a Media their media object will have 1 copy since that person only has
-	 one copy */
-	int numCopies = 0;
-	/*Year the media was published*/
-	int year = 0;
-	/*Title of the media*/
-	std::string title;
+    /*Number of copies of this media in the library. When a patron checks out
+     a Media their media object will have 1 copy since that person only has
+     one copy */
+    int numCopies = 0;
+    /*Year the media was published*/
+    int year = 0;
+    /*Title of the media*/
+    std::string title;
 };
 
 #endif

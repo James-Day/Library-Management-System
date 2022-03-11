@@ -23,10 +23,10 @@ class Manager;
 const int kMaxNumCommands = 26;
 class CommandFactory {
 public:
-   
+
     CommandFactory();
-   
-    ~CommandFactory();                                                             
+
+    ~CommandFactory();
 
     bool executeCommand(Manager* libraryManager, const char& commandCh,
         istream& infile);
@@ -37,7 +37,7 @@ private:
     characters(in the future if we want to have more than 26
     types of media we could create a method that grows the array)*/
     Command* commandFactory[kMaxNumCommands];
-    
+
     // returns the index of the array to use for creating the Media
     int hash(const char& ch) const;
 };
