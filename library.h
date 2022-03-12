@@ -1,62 +1,61 @@
-#ifndef LIBRARY_H_
-#define LIBRARY_H_
-#include <iostream>
-#include "media.h"
-#include "bintree.h"
-
 // ---------------------------------------------------------------------------
-// Media: The Library class holds Media containers for each type of media.
-//		  these containers hold all the different types of media that the
-//		  library. Storage of new media types can be created and added to 
-//			"containers" array.
-// 
+// Library: The Library class holds Binary Search trees for each type of media.
+//		  these containers hold all the different types of media that
+//the 		  library stores. Storage of new media types can be created and added
+//        to "containers" array. Media can be checked in and out of the
+//        library.
+//
 // Implementation and assumptions:
 //	 -- For now it is assumed that there are only 3 types of media that can
 //		be checked out in the library
+//   -- New types of media(new BSTrees) can not be added without editing
+//      library constructor and initializing an extra tree from there.
 //	 -- If the Library would like to add new types of Media, they will
 //		also have to add a new container to hold those medias.
-//	 -- for now 10 is used as the max numebr of medias that can be stored
+//	 -- for now 26 is used as the max number of medias that can be stored
 //	    future work could grow the size of the array if too many media types
 //		are added
+//----------------------------------------------------------------------------
 
-//The maximum number of media types the library can have is 10 for now
-const int MAXMEDIA = 26;			//change the name of this const to have a k and camel case instead of all caps
+#ifndef LIBRARY_H_
+#define LIBRARY_H_
+#include "bintree.h"
+#include "media.h"
+#include <iostream>
+
+// The maximum number of media types the library can have is 26
+const int kMaxMedia = 26;
 
 class Library {
-public:
-    //Calls constructors for each container for types of books / media
-
+  public:
+    // Calls constructors for each container for types of media we store
     Library();
 
-    //Calls destructors for each bstree. //I might not need this, I'm not entirely sure if the destructor will be called for each bstree on their own.
+    // Calls destructors for each bstree that stores a type of book.
     ~Library();
 
     /*Inserts a new media object in the library, into the correct container
     for that type of media*/
-    bool insert(Media* aMedia, char bookType);
-    /*Completely remevoes a media from it's respective container given a
-    title of the media to be removed*/
-    bool remove(const std::string title);
+    bool insert(Media *insert_media, char book_type);
 
-    /*Would check to see if the book is in the library, if it is in the
-    library, then it will check if there are any copies in the library,
-    if there are copies then the number of copies in the library is reduced by
-    one, and a copy of the book object with copies set to 1 is returned*/
-    Media* checkOutMedia(const Media* aMedia, char bookType);
+    /*checks to see if the book is in the library, if it is in the
+    library, then it will check if there are any copies in the library*/
+    Media *checkOutMedia(const Media *check_out_media, char book_type);
 
     /*would delete the Media object that is being returnedand increase the
     number of copies of the book object in the library by 1 */
-    bool checkInMedia(Media* aMedia, char bookType);
+    bool checkInMedia(Media *check_in_media, char book_type);
 
+    /*displays each type of media in the library as well as all the media
+    that is stored for each type of media*/
     void display() const;
 
-private:
+  private:
     /*An array that hold all the containers for each type of media that is
    stored in the library. There should be 1 container for each type of media*/
-    BinTree* containers[MAXMEDIA];
+    BinTree *containers_[kMaxMedia];
 
     // returns the index of the array to use for storing the book
-    int hash(const char& ch) const;
+    int hash(const char &type_media) const;
 };
-
 #endif

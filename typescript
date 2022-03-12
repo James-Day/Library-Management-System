@@ -1,0 +1,174 @@
+Script started on 2022-03-11 23:57:04-08:00 [TERM="xterm" TTY="/dev/pts/10" COLUMNS="190" LINES="55"]
+]0;jaday2@csslab5h: ~jaday2@csslab5h:~$ scriptg++ *.cpp
+]0;jaday2@csslab5h: ~jaday2@csslab5h:~$ g++ *.cpp[3Pscriptg++ *.cppvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cscript[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cscript[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Ksd[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cg++ *.cpp[Kvalgrind --leak-check=full  ./a.out [1P./a.out --leack-check=full[K[K
+==223138== Memcheck, a memory error detector
+==223138== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==223138== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==223138== Command: ./a.out
+==223138== 
+INPUT MEDIA ERROR: 'X' is not a valid media type
+INPUT MEDIA ERROR: 'Z' is not a valid media type
+
+------ Childrens Books -------
+AVAIL AUTHOR                  TITLE                                 YEAR
+5     Butterworth Emma Macal  As the Waltz was Ending               1982
+5     Williams Jay            Danny Dunn & the Homework Machine     1959
+5     Seuss Dr.               Horton hears a Who                    1954
+5     Dragonwagon Crescent    I Hate My Brother Harry               1983
+5     Numeroff Laura          If you give a mouse a cookie          1985
+5     Lobel Arnold            Martha the Movie Mouse                1966
+5     Magnus Erica            Old Lars                              1984
+5     Peterson Esther Allen   Penelope Gets Wheels                  1982
+5     Litterick Ian           Robots and Intelligent Machines       1984
+5     Peet Bill               Smokey                                1962
+5     Allen Jeffrey           The Secret Life of Mr. Weird          1982
+5     Heide Florence Parry    Treehorn's Wish                       1984
+5     Seuss Dr.               Yertle the Turtle                     1950
+
+
+------ Fiction Books -------
+AVAIL AUTHOR                  TITLE                                 YEAR
+5     Daheim Mary             Fowl Prey                             1991
+5     Daheim Mary             The Alpine Advocate                   1992
+5     Daheim Mary             The Alpine Betrayal                   1993
+5     Forster E. M.           The Longest Journey                   1922
+5     Higgins Colin           Harold and Maude                      1971
+5     Kerouac Jack            On the Road                           1955
+5     Kerouac Jack            The Dharma Bums                       1958
+5     Lawrence D. H.          Lady Chatterley's Lover               1928
+5     Lawrence D. H.          Sons and Lovers                       1913
+5     Lewis Sinclair          Babbitt                               1922
+5     Muller Marcia           Edwin of the Iron Shoes               1977
+5     Muller Marcia           Eye of the Storm                      1988
+5     Pirsig Robert           Zen & the Art of Motorcycle Maint     1974
+5     Tolkien J.R.R.          The Hobbit                            1937
+5     Walker Alice            The Color Purple                      1982
+5     Wright Richard          Native Son                            1940
+
+
+------ Periodicals -------
+AVAIL Title                                                   YEAR MONTH
+1     Vegetarian Times                                        2009     1
+1     Communications of the ACM                               2009     2
+1     Vegetarian Times                                        2009     2
+1     Communications of the ACM                               2009     3
+1     Communications of the ACM                               2009     4
+1     Communications of the ACM                               2009     5
+1     Communications of the ACM                               2009     7
+1     Sigart Bulletin                                         2009     7
+1     Communications of the ACM                               2010     1
+1     Vegetarian Times                                        2010     1
+1     Communications of the ACM                               2010     2
+1     Communications of the ACM                               2010     3
+1     Vegetarian Times                                        2010    12
+1     Communications of the ACM                               2012     3
+
+1000 Mouse, Minnie:
+1111 Mouse, Mickey:
+5000 Moose, Bullwinkle:
+Checkout Error: No Patron was found with ID: 5678
+Command Error: 'Z' is not a valid command type
+Checkout Error: invalid format type 'X'
+Checkout Error: Invalid media type 'X'
+Checkout Error: No Patron was found with ID: 1234
+Checkout Error: Bogus Title was not found in the library
+Return Error : Bogus Title was not found in the library
+Command Error: 'X' is not a valid command type
+Checkout Error: No coppies of 'Harold and Maude' left to check out
+Checkout Error: No coppies of 'Harold and Maude' left to check out
+Checkout Error: No coppies of 'Harold and Maude' left to check out
+Return Error: Harold and Maude not found in patron
+
+------ Childrens Books -------
+AVAIL AUTHOR                  TITLE                                 YEAR
+5     Butterworth Emma Macal  As the Waltz was Ending               1982
+4     Williams Jay            Danny Dunn & the Homework Machine     1959
+5     Seuss Dr.               Horton hears a Who                    1954
+5     Dragonwagon Crescent    I Hate My Brother Harry               1983
+5     Numeroff Laura          If you give a mouse a cookie          1985
+5     Lobel Arnold            Martha the Movie Mouse                1966
+4     Magnus Erica            Old Lars                              1984
+5     Peterson Esther Allen   Penelope Gets Wheels                  1982
+5     Litterick Ian           Robots and Intelligent Machines       1984
+4     Peet Bill               Smokey                                1962
+5     Allen Jeffrey           The Secret Life of Mr. Weird          1982
+4     Heide Florence Parry    Treehorn's Wish                       1984
+4     Seuss Dr.               Yertle the Turtle                     1950
+
+
+------ Fiction Books -------
+AVAIL AUTHOR                  TITLE                                 YEAR
+5     Daheim Mary             Fowl Prey                             1991
+4     Daheim Mary             The Alpine Advocate                   1992
+4     Daheim Mary             The Alpine Betrayal                   1993
+4     Forster E. M.           The Longest Journey                   1922
+0     Higgins Colin           Harold and Maude                      1971
+4     Kerouac Jack            On the Road                           1955
+4     Kerouac Jack            The Dharma Bums                       1958
+4     Lawrence D. H.          Lady Chatterley's Lover               1928
+5     Lawrence D. H.          Sons and Lovers                       1913
+4     Lewis Sinclair          Babbitt                               1922
+4     Muller Marcia           Edwin of the Iron Shoes               1977
+4     Muller Marcia           Eye of the Storm                      1988
+4     Pirsig Robert           Zen & the Art of Motorcycle Maint     1974
+4     Tolkien J.R.R.          The Hobbit                            1937
+4     Walker Alice            The Color Purple                      1982
+4     Wright Richard          Native Son                            1940
+
+
+------ Periodicals -------
+AVAIL Title                                                   YEAR MONTH
+1     Vegetarian Times                                        2009     1
+1     Communications of the ACM                               2009     2
+1     Vegetarian Times                                        2009     2
+1     Communications of the ACM                               2009     3
+1     Communications of the ACM                               2009     4
+1     Communications of the ACM                               2009     5
+0     Communications of the ACM                               2009     7
+0     Sigart Bulletin                                         2009     7
+0     Communications of the ACM                               2010     1
+1     Vegetarian Times                                        2010     1
+0     Communications of the ACM                               2010     2
+1     Communications of the ACM                               2010     3
+1     Vegetarian Times                                        2010    12
+1     Communications of the ACM                               2012     3
+
+1000 Mouse, Minnie:
+   CheckOut    Muller Marcia           Edwin of the Iron Shoes               1977
+   CheckOut    Muller Marcia           Eye of the Storm                      1988
+   CheckOut    Higgins Colin           Harold and Maude                      1971
+1111 Mouse, Mickey:
+   CheckOut    1   2010  Communications of the ACM                               
+   CheckOut    Williams Jay            Danny Dunn & the Homework Machine     1959
+   Return      Williams Jay            Danny Dunn & the Homework Machine     1959
+   CheckOut    2   2010  Communications of the ACM                               
+   CheckOut    7   2009  Communications of the ACM                               
+   CheckOut    Higgins Colin           Harold and Maude                      1971
+5000 Moose, Bullwinkle:
+   CheckOut    Williams Jay            Danny Dunn & the Homework Machine     1959
+   Return      Williams Jay            Danny Dunn & the Homework Machine     1959
+   CheckOut    Heide Florence Parry    Treehorn's Wish                       1984
+   CheckOut    Magnus Erica            Old Lars                              1984
+   CheckOut    Peet Bill               Smokey                                1962
+   CheckOut    Seuss Dr.               Yertle the Turtle                     1950
+   CheckOut    Higgins Colin           Harold and Maude                      1971
+   CheckOut    Lewis Sinclair          Babbitt                               1922
+   CheckOut    Higgins Colin           Harold and Maude                      1971
+8888 Pig, Porky:
+   CheckOut    Forster E. M.           The Longest Journey                   1922
+   CheckOut    Walker Alice            The Color Purple                      1982
+   CheckOut    Wright Richard          Native Son                            1940
+   CheckOut    Lawrence D. H.          Lady Chatterley's Lover               1928
+   CheckOut    Higgins Colin           Harold and Maude                      1971
+==223138== 
+==223138== HEAP SUMMARY:
+==223138==     in use at exit: 0 bytes in 0 blocks
+==223138==   total heap usage: 556 allocs, 556 frees, 119,731 bytes allocated
+==223138== 
+==223138== All heap blocks were freed -- no leaks are possible
+==223138== 
+==223138== For counts of detected and suppressed errors, rerun with: -v
+==223138== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+]0;jaday2@csslab5h: ~jaday2@csslab5h:~$ exit
+
+Script done on 2022-03-11 23:57:44-08:00 [COMMAND_EXIT_CODE="0"]

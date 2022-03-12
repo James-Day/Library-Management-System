@@ -4,13 +4,12 @@
 /* the constructor for the Media factory creates any Media types that will be
    used. There is currently no way to add new Media types but this could
    be afuture work*/
-MediaFactory::MediaFactory()
-{
+MediaFactory::MediaFactory() {
     for (int i = 0; i < kNumTypesOfBooks; i++) {
         media_factory_[i] = nullptr;
     }
     media_factory_[hash('F')] = new FictionBook();
-    media_factory_[hash('C')] = new ChildrensBook();      //Not sure if this is allowed, I should ask prof during office hours
+    media_factory_[hash('C')] = new ChildrensBook();
     media_factory_[hash('P')] = new Periodical();
 }
 
@@ -18,8 +17,7 @@ MediaFactory::MediaFactory()
 // MediaFactory (destructor)
 /* the destructor for the media factory deletes any media that are stored in
    the factory*/
-MediaFactory::~MediaFactory()
-{
+MediaFactory::~MediaFactory() {
     for (int i = 0; i < kNumTypesOfBooks; i++) {
         if (media_factory_[i] != nullptr) {
             delete media_factory_[i];
@@ -33,11 +31,11 @@ MediaFactory::~MediaFactory()
    index in which this type of media is stored in the factory. Then the
    specified type of media is created using the already existing media in the
    factory. Inputs will be taken from the infile*/
-Media* MediaFactory::createMediaFromCommand(const char& ch, istream& infile)
-{
+Media *MediaFactory::createMediaFromCommand(const char &ch,
+                                            istream &infile) const {
     int factory_index = hash(ch);
 
-    //invalid characters for creating a media
+    // invalid characters for creating a media
     if ((factory_index > 25 || factory_index < 0) ||
         (media_factory_[factory_index] == nullptr)) {
         return nullptr;
@@ -52,11 +50,10 @@ Media* MediaFactory::createMediaFromCommand(const char& ch, istream& infile)
    media is stored in the factory. Then the specified type of media is created
    using the already existing media in the factory. Inputs will be taken from
    the infile*/
-Media* MediaFactory::createMedia(const char& ch, istream& infile)
-{
+Media *MediaFactory::createMedia(const char &ch, istream &infile) const {
     int factory_index = hash(ch);
 
-    //invalid characters for creating a media
+    // invalid characters for creating a media
     if ((factory_index > 25 || factory_index < 0) ||
         (media_factory_[factory_index] == nullptr)) {
         return nullptr;
@@ -68,7 +65,6 @@ Media* MediaFactory::createMedia(const char& ch, istream& infile)
 // hash
 /* simple hash function that converts the character for type of media
    to a integer for indexing into the media factory*/
-int MediaFactory::hash(const char& ch) const
-{
-    return ch - 'A';
+int MediaFactory::hash(const char &media_type) const {
+    return media_type - 'A';
 }
